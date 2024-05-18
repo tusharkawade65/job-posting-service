@@ -8,7 +8,7 @@ LABEL maintainer="test_user@gmail.com"
 EXPOSE 8081
 
 # Copy the jar file into the container
-COPY target/JobPosting-1.0.jar /JobPosting-1.0.jar
+COPY target/JobPosting-0.0.1-SNAPSHOT.jar /JobPosting-0.0.1-SNAPSHOT.jar
 
 # Set the entry point to run the jar file
-ENTRYPOINT ["java", "-jar", "/JobPosting-1.0.jar"]
+ENTRYPOINT ["java", "-jar", "/JobPosting-0.0.1-SNAPSHOT.jar"]
