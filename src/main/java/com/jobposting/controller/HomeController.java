@@ -8,6 +8,6 @@ public class HomeController {
 
     @GetMapping("/")
     public String test() {
-        return "V2 Up and running";
+        return "V2 Up and running..!";
     }
 }
