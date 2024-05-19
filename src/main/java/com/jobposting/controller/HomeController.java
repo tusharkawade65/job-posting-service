@@ -21,7 +21,6 @@ public class HomeController {
     }
     @GetMapping("/test/db")
     public String testDb(){
-        testRepo.save(new Test(1,"test working"));
        Optional<Test> test= testRepo.findById(1);
        if(test.isPresent()) {
            return test.get().getTestText();
