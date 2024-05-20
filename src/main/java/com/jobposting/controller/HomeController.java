@@ -1,5 +1,6 @@
 package com.jobposting.controller;
 
+import com.jobposting.dto.TestDto;
 import com.jobposting.entity.Test;
 import com.jobposting.repository.TestRepo;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,15 +17,15 @@ public class HomeController {
     }
 
     @GetMapping("/")
-    public String test() {
-        return "V2 Up and running..!";
+    public TestDto test() {
+        return new TestDto(200,"up and running");
     }
     @GetMapping("/test/db")
-    public String testDb(){
+    public TestDto testDb(){
        Optional<Test> test= testRepo.findById(1);
        if(test.isPresent()) {
-           return test.get().getTestText();
+           return new TestDto(200,test.get().getTestText());
        }
-       return "connection failed";
+       return new TestDto(404,"db error");
     }
 }
