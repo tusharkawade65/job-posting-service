@@ -3,12 +3,14 @@ package com.jobposting.controller;
 import com.jobposting.dto.TestDto;
 import com.jobposting.entity.Test;
 import com.jobposting.repository.TestRepo;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Optional;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 public class HomeController {
     TestRepo testRepo;
 
