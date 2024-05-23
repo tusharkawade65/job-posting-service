@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/home")
+@RequestMapping("/v1/home")
 @CrossOrigin(origins = "*")
 @Slf4j
 
@@ -23,7 +23,7 @@ public class HomeController {
         this.testRepo=testRepo;
     }
 
-    @GetMapping("/")
+    @GetMapping("/test")
     public TestDto test() {
         log.info("up and running");
         return new TestDto(200,"up and running");

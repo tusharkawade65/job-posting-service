@@ -2,18 +2,13 @@ package com.jobposting.controller;
 
 import com.jobposting.dto.AuthenticationRequest;
 import com.jobposting.dto.AuthenticationResponse;
-import com.jobposting.dto.AuthorizationRequest;
 import com.jobposting.dto.RegisterRequest;
-import com.jobposting.entity.User;
+import com.jobposting.entity.Role;
 import com.jobposting.service.user.UserService;
 import com.jobposting.service.user.security.AuthenticationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
-import java.net.URI;
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/auth/")
@@ -33,6 +28,7 @@ public class UserController {
     public ResponseEntity<AuthenticationResponse> register(
             @RequestBody RegisterRequest request
     ) {
+        request.setRole(Role.USER);
         return ResponseEntity.ok(authenticationService.register(request));
     }
 

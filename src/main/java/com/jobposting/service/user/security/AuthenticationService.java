@@ -3,9 +3,7 @@ package com.jobposting.service.user.security;
 import com.jobposting.config.security.JwtService;
 import com.jobposting.dto.AuthenticationRequest;
 import com.jobposting.dto.AuthenticationResponse;
-import com.jobposting.dto.AuthorizationRequest;
 import com.jobposting.dto.RegisterRequest;
-import com.jobposting.entity.Role;
 import com.jobposting.entity.User;
 import com.jobposting.repository.UserRepo;
 import lombok.RequiredArgsConstructor;
@@ -14,7 +12,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -30,7 +27,9 @@ public class AuthenticationService {
                 .lastname(authorizationRequest.getLastname())
                 .email(authorizationRequest.getEmail())
                 .password(passwordEncoder.encode(authorizationRequest.getPassword()))
-                .role(Role.USER)
+                .role(authorizationRequest.getRole())
+                .mobileNo(authorizationRequest.getContact())
+                .whatsAppConcent(authorizationRequest.isWhatsappConsent())
                 .build();
         repo.save(user);
      var jwtToken = jwtService.generateToken(user);

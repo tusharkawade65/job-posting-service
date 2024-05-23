@@ -12,10 +12,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RegisterRequest {
-
     private String firstname;
     private String lastname;
     private String email;
     private String password;
+    private String contact;
+    private boolean whatsappConsent;
     private Role role;
 }

@@ -1,18 +1,15 @@
 package com.jobposting.controller;
 
-
-import org.springframework.http.ResponseEntity;
+import com.jobposting.dto.TestDto;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/v1/user")
-public class DemoController {
-
+@RequestMapping("/admin")
+public class AdminController {
     @GetMapping("/test")
-    public ResponseEntity<String> sayHello() {
-        return ResponseEntity.ok("hello from user secure endpoint");
+    public TestDto test() {
+        return new TestDto(200,"Welcome to admin portal");
     }
-
 }
