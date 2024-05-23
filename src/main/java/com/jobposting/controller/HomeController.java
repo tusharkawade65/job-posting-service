@@ -15,7 +15,6 @@ import java.util.Optional;
 @RequestMapping("/v1/home")
 @CrossOrigin(origins = "*")
 @Slf4j
-
 public class HomeController {
     TestRepo testRepo;
 
