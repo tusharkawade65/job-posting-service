@@ -31,10 +31,17 @@ public class AuthenticationService {
                 .mobileNo(authorizationRequest.getContact())
                 .whatsAppConcent(authorizationRequest.isWhatsappConsent())
                 .build();
+       if((repo.findByEmail(user.getEmail()).isPresent())||(repo.findByMobileNo(user.getMobileNo()).isPresent())){
+           return AuthenticationResponse.builder()
+                   .accessToken(null)
+                   .message("Email or contact already present")
+                   .build();
+       }
         repo.save(user);
      var jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder()
                 .accessToken(jwtToken)
+                .message("User registered successfully.")
                 .build();
     }
 
