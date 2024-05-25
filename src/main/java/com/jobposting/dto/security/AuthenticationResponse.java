@@ -1,4 +1,4 @@
-package com.jobposting.dto;
+package com.jobposting.dto.security;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,10 +1,11 @@
 package com.jobposting.service.user.security;
 
 import com.jobposting.config.security.JwtService;
-import com.jobposting.dto.AuthenticationRequest;
-import com.jobposting.dto.AuthenticationResponse;
-import com.jobposting.dto.RegisterRequest;
+import com.jobposting.dto.security.AuthenticationRequest;
+import com.jobposting.dto.security.AuthenticationResponse;
+import com.jobposting.dto.security.RegisterRequest;
 import com.jobposting.entity.User;
+import com.jobposting.exceptions.UserAlreadyRegisteredException;
 import com.jobposting.repository.UserRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -32,10 +33,7 @@ public class AuthenticationService {
                 .whatsAppConcent(authorizationRequest.isWhatsappConsent())
                 .build();
        if((repo.findByEmail(user.getEmail()).isPresent())||(repo.findByMobileNo(user.getMobileNo()).isPresent())){
-           return AuthenticationResponse.builder()
-                   .accessToken(null)
-                   .message("Email or contact already present")
-                   .build();
+           throw new UserAlreadyRegisteredException("User already present in database");
        }
         repo.save(user);
      var jwtToken = jwtService.generateToken(user);
@@ -45,7 +43,7 @@ public class AuthenticationService {
                 .build();
     }
 
-    public AuthenticationResponse authenticate(AuthenticationRequest request){
+    public AuthenticationResponse authenticate(AuthenticationRequest request) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         request.getEmail(),
