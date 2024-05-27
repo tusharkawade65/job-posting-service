@@ -1,5 +1,6 @@
 package com.jobposting.dto.security;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.jobposting.dto.UserDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,4 +16,5 @@ public class AuthenticationResponse {
     private String accessToken;
     @JsonProperty("message")
     private String message;
+    private UserDto userDto;
 }

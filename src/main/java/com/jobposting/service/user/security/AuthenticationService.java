@@ -1,6 +1,7 @@
 package com.jobposting.service.user.security;
 
 import com.jobposting.config.security.JwtService;
+import com.jobposting.dto.UserDto;
 import com.jobposting.dto.security.AuthenticationRequest;
 import com.jobposting.dto.security.AuthenticationResponse;
 import com.jobposting.dto.security.RegisterRequest;
@@ -40,6 +41,7 @@ public class AuthenticationService {
         return AuthenticationResponse.builder()
                 .accessToken(jwtToken)
                 .message("User registered successfully.")
+                .userDto(UserDto.builder().id(user.getId()).username(user.getUsername()).email(user.getEmail()).build())
                 .build();
     }
 
@@ -55,6 +57,8 @@ public class AuthenticationService {
         var jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder()
                 .accessToken(jwtToken)
+                .userDto(UserDto.builder().id(user.getId()).username(user.getUsername()).email(user.getEmail()).build())
+                .message("Logged in successfully")
                 .build();
     }
 }
