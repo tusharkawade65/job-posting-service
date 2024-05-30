@@ -1,5 +1,6 @@
 package com.jobposting.service.user;
 
+import com.jobposting.dto.user.UserResponseDto;
 import com.jobposting.entity.User;
 import com.jobposting.repository.UserRepo;
 import jakarta.transaction.Transactional;
@@ -23,9 +24,11 @@ public class UserService implements IUserService{
     }
 
     @Override
-    public User getUser(String email) {
+    public UserResponseDto getUser(String email) {
         log.info("finding user by email");
-        return userRepo.findByEmail(email).orElseThrow();
+        User user= userRepo.findByEmail(email).orElseThrow();
+        UserResponseDto userResponseDto = new UserResponseDto(user);
+        return userResponseDto;
     }
 
     @Override

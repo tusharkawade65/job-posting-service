@@ -55,6 +55,7 @@ public class AuthenticationService {
         var user = repo.findByEmail(request.getEmail())
                 .orElseThrow();
         var jwtToken = jwtService.generateToken(user);
+
         return AuthenticationResponse.builder()
                 .accessToken(jwtToken)
                 .userDto(UserDto.builder().id(user.getId()).username(user.getUsername()).email(user.getEmail()).build())
