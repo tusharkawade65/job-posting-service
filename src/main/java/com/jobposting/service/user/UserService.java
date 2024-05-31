@@ -27,8 +27,7 @@ public class UserService implements IUserService{
     public UserResponseDto getUser(String email) {
         log.info("finding user by email");
         User user= userRepo.findByEmail(email).orElseThrow();
-        UserResponseDto userResponseDto = new UserResponseDto(user);
-        return userResponseDto;
+        return new UserResponseDto(user);
     }
 
     @Override

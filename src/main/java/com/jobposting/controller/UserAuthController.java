@@ -1,6 +1,5 @@
 package com.jobposting.controller;
 
-import com.jobposting.config.security.JwtService;
 import com.jobposting.dto.security.AuthenticationRequest;
 import com.jobposting.dto.security.AuthenticationResponse;
 import com.jobposting.dto.security.RegisterRequest;

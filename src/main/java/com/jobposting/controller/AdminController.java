@@ -1,16 +1,16 @@
 package com.jobposting.controller;
 
 import com.jobposting.dto.TestDto;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/admin")
 @CrossOrigin(origins = "*")
 public class AdminController {
     @GetMapping("/test")
+    @Operation(summary = "Admin Test Endpoint", security = @SecurityRequirement(name = "bearerAuth"))
     public TestDto test() {
         return new TestDto(200,"Welcome to admin portal");
     }
