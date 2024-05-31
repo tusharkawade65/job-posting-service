@@ -1,6 +1,8 @@
 package com.jobposting.exceptions;
 
 import com.jobposting.dto.ErrorResponse;
+import com.jobposting.dto.UserDto;
+import com.jobposting.dto.security.AuthenticationResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -27,12 +29,18 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(UserAlreadyRegisteredException.class)
-    public ResponseEntity<ErrorResponse> handleUserAlreadyRegisteredException(UserAlreadyRegisteredException e, WebRequest webRequest) {
-        ErrorResponse errorResponse = ErrorResponse.builder()
+    public ResponseEntity<AuthenticationResponse> handleUserAlreadyRegisteredException(UserAlreadyRegisteredException e, WebRequest webRequest) {
+   /*     ErrorResponse errorResponse = ErrorResponse.builder()
                 .dateTime(LocalDateTime.now())
                 .message(e.getMessage())
                 .details(webRequest.getDescription(false))
                 .build();
+    */
+        AuthenticationResponse errorResponse = new AuthenticationResponse();
+        errorResponse.setUserDto(null);
+        errorResponse.setAccessToken(null);
+        errorResponse.setMessage("User already exist in database");
+
         return new ResponseEntity<>(errorResponse, HttpStatus.CONFLICT);
     }
 
