@@ -2,13 +2,11 @@ package com.jobposting.controller;
 
 import com.jobposting.config.security.JwtService;
 import com.jobposting.dto.user.UserResponseDto;
-import com.jobposting.entity.User;
 import com.jobposting.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
 
 @RequiredArgsConstructor
 @RestController
